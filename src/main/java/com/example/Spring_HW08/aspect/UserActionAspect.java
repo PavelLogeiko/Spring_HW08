@@ -6,16 +6,12 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Aspect
 @Component
 public class UserActionAspect {
-
-    /**
-    текущая дата и время
-     */
-Date currentDateAndTime = new Date();
 
 /**
 вывод на консоль логов действия пользователя
@@ -24,7 +20,7 @@ Date currentDateAndTime = new Date();
     @Order(1)
     public void afterUserAction(JoinPoint joinPoint) {
         System.out.println("Действие пользователя: " + joinPoint.getSignature().getName() +
-                " | " + currentDateAndTime);
+                " | " + LocalDateTime.now());
         System.out.println("\nРасшифровка действий:" +
                 "\ngetAllNotes - получил список всех заметок" +
                 "\ngetNoteById - получил заметку по Id" +
